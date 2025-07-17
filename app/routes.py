@@ -39,9 +39,12 @@ def avg_temp_last_week(db: Session = Depends(get_db)):
     Calculate the average observed temperature (°C) for the previous week (Mon–Sun)
     for the first-added station only.
     """
+
+    # Get params
     station = get_first_station(db)
     start_dt, end_dt = get_last_week_range()
 
+    # Execute query
     result = db.query(func.avg(WeatherObservation.temperature))\
         .filter(
             WeatherObservation.station_id == station.id,
@@ -63,12 +66,14 @@ def max_wind_speed_delta(db: Session = Depends(get_db)):
     Find the maximum wind speed change (delta) between consecutive observations
     for the first-added station in the last 7 days.
     """
+    # Get params
     station = get_first_station(db)
     station_id = station.id
 
     end_dt = datetime.utcnow()
     start_dt = end_dt - timedelta(days=7)
 
+    # Create raw SQL query (using LAG for performance)
     sql = text("""
         SELECT MAX(ABS(wind_speed - prev_wind_speed)) AS max_delta
         FROM (
@@ -82,6 +87,7 @@ def max_wind_speed_delta(db: Session = Depends(get_db)):
         WHERE prev_wind_speed IS NOT NULL
     """)
 
+    # Execute query
     result = db.execute(sql, {
         "station_id": station_id,
         "start": start_dt,

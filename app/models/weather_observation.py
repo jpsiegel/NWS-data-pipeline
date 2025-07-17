@@ -1,6 +1,7 @@
 from sqlalchemy import Column, Integer, Float, ForeignKey, DateTime, CheckConstraint, UniqueConstraint
 from sqlalchemy.orm import relationship
 from app.db.base import Base
+from app.models.station import Station
 
 class WeatherObservation(Base):
     """Stores weather readings from an NWS station"""

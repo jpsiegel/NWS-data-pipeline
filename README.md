@@ -7,9 +7,10 @@ Data pipeline to query weather data from NWS
 - Seeder to populate database
 - Logger for reporting and error visibility
 - Pipeline inserts only new records in batches for performance
+- Endpoint documentation and docstrings
 
 
-Commands
+Usage
 
 - check database 
 sudo docker compose exec db psql -U postgres
@@ -19,7 +20,8 @@ parameter --station is optional, if not provided default station 000PG will be u
 - Check queries
 sudo docker compose up
 and go to http://localhost:8000/quueries
-
+queries are executed for the first station that was added to the database
+- A basic endpoint documentation is  
 
 
 Assumptions:

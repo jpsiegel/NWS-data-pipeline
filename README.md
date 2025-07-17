@@ -46,7 +46,7 @@ A weather data ingestion pipeline using the [National Weather Service API](https
 
 ### 4. Optionally check database
 `docker compose exec db psql -U postgres`
-- Use psql statements to view stored data eg `select * from stations`;
+- Use psql statements to view stored data eg `select * from stations;`
 
 ---
 

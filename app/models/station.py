@@ -3,11 +3,15 @@ from sqlalchemy.orm import relationship
 from app.db.base import Base
 
 class Station(Base):
+    """National Weather Service station, can have multiple weather observations"""
+
     __tablename__ = "stations"
 
     # Attributes
     id = Column(Integer, primary_key=True, index=True)
-    nws_id = Column(String, unique=True, index=True) # id from National Weather Service
+    nws_id = Column(String, unique=True, index=True) #id from National Weather Service
+
+    # Values
     name = Column(String, nullable=False)
     timezone = Column(String, nullable=True) # e.g. America/Santiago
     latitude = Column(Float, nullable=True)

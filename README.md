@@ -44,6 +44,10 @@ A weather data ingestion pipeline using the [National Weather Service API](https
 - http://localhost:8000/docs - auto-generated Swagger docs
 - Note that metrics endpoints run queries for the first added station in the database.
 
+### 4. Optionally check database
+`docker compose exec db psql -U postgres`
+- Use psql statements to view stored data eg `select * from stations`;
+
 ---
 
 ## Assumptions

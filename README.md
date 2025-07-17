@@ -1,42 +1,7 @@
-# NWS-data-pipeline
-Data pipeline to query weather data from NWS
-
-- FastAPI + PSQL
-- Station and weather observations models
-- Constraint checks
-- Seeder to populate database
-- Logger for reporting and error visibility
-- Pipeline inserts only new records in batches for performance
-- Queries are done via endpoints
-- SQL window was used to calculate max delta for efficiency
-- Endpoint documentation and docstrings
-
-
-Usage
-
-- check database 
-sudo docker compose exec db psql -U postgres
-- Run pipeline
-sudo docker compose run app python -m app.seeder --station 011HI
-parameter --station is optional, if not provided default station 000PG will be used.
-- Check queries
-sudo docker compose up
-and go to http://localhost:8000/metrics/..
-queries are executed for the first station that was added to the database
-- A basic endpoint documentation is available at http://localhost:8000/docs
-
-
-Assumptions:
-- a weather observation from NWS is invariable and cannot be updated later, eg it is never "outdated"
-    - duplicated observations will be skipped and not updated
-- Pagination is not supported for /observations
-
-
-
 # 🌤 NWS Data Pipeline
 
 A weather data ingestion pipeline using the [National Weather Service API](https://www.weather.gov/documentation/services-web-api), created with Docker, FastAPI and PostgreSQL.
----
+
 
 ## 🚀 Features
 
@@ -51,7 +16,7 @@ A weather data ingestion pipeline using the [National Weather Service API](https
 - Query access via **RESTful endpoints**
 - Basic auto-generated documentation via Swagger (see `/docs`)
 - Clear **docstrings** and type annotations for maintainability
----
+
 
 ## 🧪 Usage
 
@@ -65,7 +30,9 @@ A weather data ingestion pipeline using the [National Weather Service API](https
 
 ### 2. Run pipeline
 - Use seeder to populate database
+
 `docker compose run app python -m app.seeder --station 011HI`
+
 - Note that parameter `--station` is optional, if not provided default station 000PG will be used (default can be edited in seeder.py)
 - This can be done several times, for the same or new stations.
 

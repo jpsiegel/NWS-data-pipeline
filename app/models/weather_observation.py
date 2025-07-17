@@ -13,12 +13,12 @@ class WeatherObservation(Base):
     timestamp = Column(DateTime, nullable=False)
     
     # Values
-    temperature = Column(Float, nullable=True) # Celcius
+    temperature = Column(Float, nullable=True) # Celsius
     wind_speed = Column(Float, nullable=True) # km/h
     wind_direction = Column(Float, nullable=True) # angular degree
     humidity = Column(Float, nullable=True) # %
     pressure = Column(Float, nullable=True) # Pa
-    dewpoint = Column(Float, nullable=True) # Celcius
+    dewpoint = Column(Float, nullable=True) # Celsius
     visibility = Column(Float, nullable=True) # meters   
 
     # Relationships

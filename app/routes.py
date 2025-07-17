@@ -36,7 +36,7 @@ def get_last_week_range() -> Tuple[datetime, datetime]:
 @router.get("/metrics/avg_temperature_last_week")
 def avg_temp_last_week(db: Session = Depends(get_db)):
     """
-    Calculate the average observed temperature (°C) for the previous week (Mon–Sun)
+    Calculate the average observed temperature for the previous week (monday - sunday)
     for the first-added station only.
     """
 
